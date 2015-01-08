@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
-  <link rel="import" href="headers.html">
-  <title>Angular</title>
+	<link rel="import" href="headers.html">
+	<title>Angular</title>
 </head>
-
 
 <body ng-app="workout" ng-controller="root">
 
 
-  <div ng-repeat="item in exercises | orderBy: 'name'">
-  	{{item.name}} | {{item.calories}} calories
-  </div>
+	<div ng-repeat="item in exercises | orderBy: '-upvotes'" class="ui dividing header">
+		<i class="trophy icon"></i>
+		<div class="content">
+			{{item.name}}
+			<div class="sub header">
+				{{item.calories}} calories | <span ng-click="incrementUpVotes(item)">{{item.upvotes}} upvotes <i class="arrow circle outline up icon"></i></span>
+			</div>
+		</div>
+	</div>
+
+	<form ng-submit="addExercise()" class="ui form segment">
+
+		<div class="inline field">
+			<label>Exercise</label>
+			<input type="text" placeholder="Exercise" ng-model="exercise" />
+		</div>
+
+		<div class="inline field">
+			<label>Calories</label>
+			<input type="text" placeholder="Calories" ng-model="calories" />
+		</div>
+
+		<button type="submit" class="ui submit button">Add</button>
+
+	</form>
 
 
-  <form ng-submit="addExercise()" class="ui form segment">
 
-    <div class="inline field">
-      <label>Exercise</label>
-      <input type="text" placeholder="Exercise" ng-model="exercise"/>
-    </div>
-
-    <div class="inline field">
-      <label>Calories</label>
-      <input type="text" placeholder="Calories" ng-model="calories"/>
-    </div>
-
-    <button type="submit" class="ui submit button">Add</button>
-
-  </form>
+	<script type="text/javascript" src="js/app.js"></script>
 
 
-<script type="text/javascript" src="js/app.js"></script>
 </body>
-
 
 </html>
